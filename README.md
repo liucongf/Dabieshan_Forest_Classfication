@@ -1,9 +1,8 @@
 # Dabieshan Forest Classification using Swin Transformer_UPerNet (with U-Net Baseline)
 # 基于 Swin Transformer_UPerNet 的大别山森林分类（附 U-Net 基准对比）
 
-This repository contains the **implementation code** and **result dataset** for the forest type classification methodology described in our manuscript titled **"Integrating Swin Transformer and UPerNet for High-Resolution Forest Mapping in Support of Monitoring Ecosystem"**.
-
-本仓库包含我们论文《**集成 Swin Transformer 与 UPerNet 的高分辨率森林制图及其在生态系统监测中的应用**》中描述的森林类型分类方法的**实现代码**与**结果数据集**。
+This repository hosts the source dataset used in our study for forest type classification in the Dabie Mountains area, supporting the manuscript titled "Integrating Swin Transformer and UPerNet for High-Resolution Forest Mapping in Support of Monitoring Ecosystem".
+本仓库存放了我们研究中用于大别山地区森林类型分类的源数据集，支持题为 《集成 Swin Transformer 与 UPerNet 的高分辨率森林制图及其在生态系统监测中的应用》 的论文。
 
 # Dabieshan Forest Classification Dataset
 
@@ -18,37 +17,18 @@ This repository contains the **implementation code** and **result dataset** for 
 - **Baseline Model (U-Net)**: A U-Net model was implemented as a baseline for comparative performance evaluation.
   **基准模型 (U-Net)**：实现的 U-Net 模型作为性能对比的基准。
 
-**Dataset / 数据集**:
-The dataset includes three forest type classification maps of the Dabie Mountains area in China. It features four main classes: coniferous forest, broadleaf forest, mixed forest, and shrubland.
-本数据集包含三幅中国大别山地区的森林类型分类图，主要分为四个类别：针叶林、阔叶林、混交林和灌丛。
 
-## 🗺️ Overall Workflow / 整体工作流程
-The complete process from raw imagery to the final forest map consists of the following key steps:
-从原始影像到最终森林专题图的完整流程包含以下关键步骤：
+## Dataset / 数据集
+This dataset comprises a set of paired training samples for forest type classification. It includes preprocessed Gaofen-1 (GF-1) satellite image patches (.tif files) and their corresponding manual annotation labels (in lab_data.rar), which cover four forest classes: coniferous forest, broadleaf forest, mixed forest, and shrubland.
+本数据集包含一套用于森林类型分类的配对训练样本。其中包括预处理后的高分一号（GF-1）卫星影像块（.tif 文件）及其对应的人工标注标签（位于 lab_data.rar 中），涵盖四个森林类别：针叶林、阔叶林、混交林和灌丛。
 
-1.  **Data Preprocessing & VOC Preparation**: Raw images are cropped (with geographic information preserved) and annotated to form a VOC-format dataset.
-    **数据预处理与 VOC 准备**：裁剪原始图像（保留地理信息）并标注，生成 VOC 格式数据集。
-2.  **Model Training**:
-    **模型训练**：
-    - **Primary Model (Swin Transformer_UPerNet)**: Trained using `train_swin.py`.
-      **主要模型 (Swin Transformer_UPerNet)**：使用 `train_swin.py` 进行训练。
-    - **Baseline Model (U-Net)**: Trained using `train_unet.py` for comparative analysis.
-      **基准模型 (U-Net)**：使用 `train_unet.py` 进行训练，用于对比分析。
-3.  **Model Inference & Map Generation**:
-    **模型推理与专题图生成**：
-    - **Prediction**: Both models are used to predict on pre-processed tiles using their respective prediction scripts.
-      **预测**：使用各自的预测脚本，让两个模型对预处理后的图像块进行预测。
-    - **Mosaicking & Coloring (Primary Model)**: The predicted tiles from the Swin Transformer_UPerNet model are stitched back together based on the recorded cropping boundaries (using a Gaussian-based algorithm) and then colorized according to the forest type classes. This process is integrated into `predict_and_merge.py`.
-      **拼接与上色 (主要模型)**：Swin Transformer_UPerNet 模型的预测块根据记录的裁剪边界（基于高斯算法）拼接回完整的区域，并根据森林类型类别上色。此过程集成在 `predict_and_merge.py` 中。
+###Data Content / 数据内容
+Gaofen-1 (GF-1) Satellite Imagery (.tif files): High-resolution optical remote sensing image patches. These patches were cropped from the preprocessed Gaofen-1 (GF-1) satellite image and served as the primary input for model training and validation.
+高分一号卫星影像 (.tif 文件)：高分辨率光学遥感影像块。这些影像块由预处理后的高分一影像裁剪而成，作为模型训练和验证的主要输入。
 
-## ⚙️ Setup & Installation / 环境设置与安装
+Labeled Dataset (lab_data.rar): The corresponding annotated data for the above image patches, used for supervised training of the deep learning models.
+标注数据集 (lab_data.rar)：与上述影像块对应的标注数据，用于深度学习模型的监督训练。
 
-### 1. Clone and Setup the Base Framework / 克隆并设置基础框架
-**You must first set up the official `Swin-Transformer-Semantic-Segmentation` framework independently.**  
-**您必须首先独立安装官方的 `Swin-Transformer-Semantic-Segmentation` 框架。**
-
-```bash
-git clone https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation.git
-cd Swin-Transformer-Semantic-Segmentation
-# Follow the official installation guide (安装依赖、编译 CUDA 算子等)
-# 请严格按照其官方 README 的 Installation 部分操作: https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation#installation
+###Note on Methodology and Code / 方法与代码说明
+The complete methodological workflow from this source data to the final forest classification map involved several steps, including model training (utilizing Swin Transformer_UPerNet and a U-Net baseline) and post-processing. The implementation code for the complete methodology is described in the accompanying manuscript. This initial release (v1.1) focuses on providing the core dataset (preprocessed GF-1 image patches and their corresponding annotation labels) to ensure reproducibility.
+完整方法的实现代码在论文中详述。本次初始发布 (v1.1) 侧重于提供核心数据集（GF-1影像与标注）以确保可重复性。
