@@ -10,7 +10,7 @@ This repository contains the **implementation code** and **result dataset** for 
 ## 许可 (License)
 
 - **软件/代码**：本仓库中的源代码部分，依据 [Apache License 2.0](LICENSE) 许可。
-- **数据集**：本仓库中的森林分类地图文件（`.tif` 文件）及标注数据文件（`lab_data.rar`）等**数据集内容**，依据 [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) 许可协议发布。
+- **数据集**：本仓库中的GF-1遥感影像数据文件（`.tif` 文件）及标注数据文件（`lab_data.rar`）等**数据集内容**，依据 [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) 许可协议发布。
 
 **Core Method / 核心方法**:
 - **Primary Model (Swin Transformer_UPerNet)**: This is the main framework proposed and analyzed in our study for high-resolution forest semantic segmentation.
